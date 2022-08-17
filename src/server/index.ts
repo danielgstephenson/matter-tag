@@ -49,7 +49,7 @@ const io = new socketIo.Server<ClientToServerEvents, ServerToClientEvents>(serve
 const PORT = process.env.PORT ?? 3000
 server.listen(PORT, () => {
   console.log(`Listening on :${PORT}`)
-  setInterval(tick, 10)
+  setInterval(tick, 50)
 })
 
 async function updateClients (): Promise<void> {
