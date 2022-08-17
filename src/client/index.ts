@@ -28,9 +28,9 @@ window.onkeyup = function (event: KeyboardEvent) {
   input.take({ key: event.key, value: false })
 }
 
-window.onwheel = function (event: WheelEvent) {
-  camera.zoom -= 0.001 * event.deltaY
-}
+// window.onwheel = function (event: WheelEvent) {
+//   camera.zoom -= 0.001 * event.deltaY
+// }
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io()
 

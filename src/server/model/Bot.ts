@@ -120,10 +120,10 @@ export default class Bot extends Character {
     const goalWaypoint = this.getGoalWaypoint(goal)
     const path = goalWaypoint.getVectorPath(goal)
     // Should this path be allowed to go through walls?
-    path.slice(0, path.length - 1).forEach((point, index) => {
-      const next = path[index + 1]
-      return new DebugLine({ start: point, end: next, color: 'purple' })
-    })
+    // path.slice(0, path.length - 1).forEach((point, index) => {
+    //   const next = path[index + 1]
+    //   return new DebugLine({ start: point, end: next, color: 'purple' })
+    // })
     const target = path.reduce((a, b) => {
       const hit = raycast({ start, end: b, obstacles: Wall.wallObstacles })
       return hit === false ? b : a
@@ -244,8 +244,8 @@ export default class Bot extends Character {
         this.searchTarget = this.getGoalTarget(this.searchGoal)
       }
       this.searchTarget = this.isPointWallClear(this.searchGoal) ? this.searchGoal : this.searchTarget
-      void new DebugLine({ start, end: this.searchGoal, color: 'yellow' })
-      void new DebugLine({ start, end: this.searchTarget, color: 'teal' })
+      // void new DebugLine({ start, end: this.searchGoal, color: 'yellow' })
+      // void new DebugLine({ start, end: this.searchTarget, color: 'teal' })
       // END SPEEDUP
       return new Direction({ start: start, end: this.searchTarget, debugColor: 'teal' })
     }

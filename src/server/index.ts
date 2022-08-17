@@ -134,9 +134,9 @@ Waypoint.waypoints.forEach(waypoint => { waypoint.distances = Waypoint.waypoints
 Waypoint.waypoints.forEach(waypoint => waypoint.setNeighbors())
 Waypoint.waypoints.forEach(() => Waypoint.waypoints.forEach(waypoint => waypoint.updateDistances()))
 Waypoint.waypoints.forEach(waypoint => waypoint.setPaths())
-Waypoint.waypoints.forEach(waypoint => new DebugLabel({
-  x: waypoint.x, y: waypoint.y, text: waypoint.id.toString(), color: 'white'
-}))
+// Waypoint.waypoints.forEach(waypoint => new DebugLabel({
+//   x: waypoint.x, y: waypoint.y, text: waypoint.id.toString(), color: 'white'
+// }))
 
 console.log('navigation complete')
 
@@ -232,12 +232,12 @@ Matter.Events.on(engine, 'afterUpdate', () => {
     oldTime = newTime
   }
   runner.enabled = !Actor.paused
-  DebugCircle.circles = Waypoint.waypoints.map(waypoint => new DebugCircle({
-    x: waypoint.x,
-    y: waypoint.y,
-    radius: 5,
-    color: 'purple'
-  }))
+  // DebugCircle.circles = Waypoint.waypoints.map(waypoint => new DebugCircle({
+  //   x: waypoint.x,
+  //   y: waypoint.y,
+  //   radius: 5,
+  //   color: 'purple'
+  // }))
   DebugLine.lines = []
   Player.players.forEach(player => player.debugPath())
   Actor.actors.forEach(actor => actor.act())
