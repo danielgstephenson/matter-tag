@@ -28,9 +28,9 @@ window.onkeyup = function (event: KeyboardEvent) {
   input.take({ key: event.key, value: false })
 }
 
-// window.onwheel = function (event: WheelEvent) {
-//   camera.zoom -= 0.001 * event.deltaY
-// }
+window.onwheel = function (event: WheelEvent) {
+  camera.zoom -= 0.001 * event.deltaY
+}
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io()
 
@@ -97,11 +97,11 @@ const draw = function (): void {
     context.lineWidth = 1
     context.stroke()
     if (shape.circleRadius != null && shape.circleRadius > 0) {
-      const label = context.fillStyle
+      const label = context.fillStyle.slice(1)
       context.fillStyle = 'white'
       context.textAlign = 'center'
       context.textBaseline = 'middle'
-      context.font = '20px sans'
+      context.font = '8px sans'
       context.fillText(label, shape.ix - camera.x, shape.iy - camera.y)
     }
   })

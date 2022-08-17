@@ -197,11 +197,11 @@ export default class Bot extends Character {
       if (closestVisible.enemy == null) {
         const goal = this.onAlert ? this.alertPoint : this.searchGoal
         this.searchTarget = this.getGoalTarget(this.searchGoal)
-        const target = this.isPointClear(goal) ? goal : this.searchTarget
+        const target = this.isPointWallClear(goal) ? goal : this.searchTarget
         return new Direction({ start: start, end: target, debugColor: 'white' })
       } else {
         const goal = closestVisible.enemy.feature.body.position
-        const target = this.isPointClear(goal) ? goal : this.getGoalTarget(goal)
+        const target = this.isPointWallClear(goal) ? goal : this.getGoalTarget(goal)
         const debugColor = this.onAlert ? 'red' : 'grey'
         this.updateSearch()
         return new Direction({ start: start, end: target, debugColor })
