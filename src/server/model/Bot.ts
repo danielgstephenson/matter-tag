@@ -208,13 +208,13 @@ export default class Bot extends Character {
         }
         this.unblocking = false
       }
-      this.searchTarget = this.getGoalTarget(this.searchGoal)
+      // this.searchTarget = this.getGoalTarget(this.searchGoal)
       // SPEEDUP
-      // if (!this.isPointWallClear(this.searchTarget) || this.isPointWallVisible(this.searchTarget)) {
-      //   this.updateSearch()
-      //   this.searchTarget = this.searchGoal
-      // }
-      // void new DebugLine({ start, end: this.searchTarget, color: 'teal' })
+      if (!this.isPointWallClear(this.searchTarget) || this.isPointWallVisible(this.searchTarget)) {
+        this.updateSearch()
+        this.searchTarget = this.searchGoal
+      }
+      void new DebugLine({ start, end: this.searchTarget, color: 'teal' })
       // END SPEEDUP
       return new Direction({ start: start, end: this.searchTarget, debugColor: 'teal' })
     }

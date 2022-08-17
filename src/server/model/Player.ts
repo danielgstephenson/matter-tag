@@ -91,9 +91,9 @@ export default class Player extends Character {
   }
 
   debugPath (): void {
-    // const goal = Waypoint.waypoints[59].position
-    // const target = this.getGoalTarget(goal)
-    // void new DebugLine({ start: this.feature.body.position, end: target, color: 'teal' })
-    // void new DebugLine({ start: this.feature.body.position, end: goal, color: 'yellow' })
+    const goal = Waypoint.waypoints[59].position
+    const target = this.getGoalTarget(goal)
+    void new DebugLine({ start: this.feature.body.position, end: target, color: 'teal' })
+    void new DebugLine({ start: this.feature.body.position, end: goal, color: 'yellow' })
   }
 }

@@ -6,7 +6,7 @@ import fs from 'fs'
 import socketIo from 'socket.io'
 import Matter from 'matter-js'
 import Wall from './model/Wall'
-import { DEBUG_STEP_TIME, engine, runner } from './lib/engine'
+import { DEBUG_STEP_TIME, DEBUG_STEP_TIME_LIMIT, engine, runner } from './lib/engine'
 import { ClientToServerEvents, ServerToClientEvents } from '../shared/socket'
 import config from './config.json'
 import DebugLine from '../shared/DebugLine'
@@ -201,14 +201,14 @@ void new Crate({ x: -800, y: -800, height: 300, width: 200 })
 
 console.log('Start Bot')
 
-void new Bot({ x: 500, y: 500 })
-void new Bot({ x: -500, y: -500 })
-void new Bot({ x: 500, y: -500 })
-void new Bot({ x: -500, y: 500 })
-void new Bot({ x: 800, y: 800 })
-void new Bot({ x: -800, y: -800 })
-void new Bot({ x: 800, y: -800 })
-void new Bot({ x: -800, y: 800 })
+// void new Bot({ x: 500, y: 500 })
+// void new Bot({ x: -500, y: -500 })
+// void new Bot({ x: 500, y: -500 })
+// void new Bot({ x: -500, y: 500 })
+// void new Bot({ x: 800, y: 800 })
+// void new Bot({ x: -800, y: -800 })
+// void new Bot({ x: 800, y: -800 })
+// void new Bot({ x: -800, y: 800 })
 
 console.log('Bot complete')
 
@@ -218,8 +218,11 @@ let oldTime = Date.now()
 Matter.Events.on(engine, 'afterUpdate', () => {
   if (DEBUG_STEP_TIME) {
     const newTime = Date.now()
-    console.log('stepTime', newTime - oldTime)
-    oldTime = newTime
+    const stepTime = newTime - oldTime
+    if (stepTime > DEBUG_STEP_TIME_LIMIT) {
+      console.log('stepTime', stepTime)
+      oldTime = newTime
+    }
   }
   runner.enabled = !Actor.paused
   DebugCircle.circles = Waypoint.waypoints.map(waypoint => new DebugCircle({
@@ -229,7 +232,9 @@ Matter.Events.on(engine, 'afterUpdate', () => {
     color: 'purple'
   }))
   DebugLine.lines = []
-  Player.players.forEach(player => player.debugPath())
+  if (DebugLine.PLAYER_PATH) {
+    Player.players.forEach(player => player.debugPath())
+  }
   Actor.actors.forEach(actor => actor.act())
 })
 

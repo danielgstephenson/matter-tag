@@ -14,3 +14,4 @@ export function getDistance (a: Matter.Vector, b: Matter.Vector): number {
 }
 
 export const DEBUG_STEP_TIME = true
+export const DEBUG_STEP_TIME_LIMIT = 35
