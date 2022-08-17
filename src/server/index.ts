@@ -103,11 +103,15 @@ wallProps.forEach(props => new Wall({ ...props, waypoints: false }))
 
 void new Wall({ x: 1000, y: -1100, width: 800, height: 500 })
 void new Wall({ x: -1000, y: -1100, width: 400, height: 200 })
+void new Wall({ x: -500, y: -500, width: 100, height: 100 })
 void new Wall({ x: 400, y: -500, width: 200, height: 500 })
+void new Wall({ x: -1100, y: 400, width: 200, height: 500 })
+void new Wall({ x: 0, y: -200, width: 100, height: 100 })
 void new Wall({ x: 1000, y: 200, width: 200, height: 1500 })
 void new Wall({ x: -400, y: 600, width: 1000, height: 1000 })
 void new Wall({ x: 450, y: 700, width: 200, height: 800 })
-void new Wall({ x: 300, y: 1300, width: 200, height: 200 })
+void new Wall({ x: -800, y: 1300, width: 400, height: 200 })
+void new Wall({ x: 300, y: 1300, width: 800, height: 200 })
 
 const edgePadding = 30
 const size = MAP_SIZE - edgePadding
