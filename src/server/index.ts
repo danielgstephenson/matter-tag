@@ -85,7 +85,7 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log('disconnect:', socket.id)
     const player = Player.players.get(socket.id)
-    if (Character.it === player) Bot.oldest.makeIt()
+    if (Character.it === player) Bot.oldest?.makeIt()
     player?.destroy()
   })
 })

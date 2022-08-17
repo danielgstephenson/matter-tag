@@ -108,11 +108,12 @@ export default class Bot extends Character {
     const start = this.feature.body.position
     const goalWaypoint = this.getGoalWaypoint(goal)
     const path = goalWaypoint.getVectorPath(goal)
-    // Should this path be allowed to go through walls?
-    path.slice(0, path.length - 1).forEach((point, index) => {
-      // const next = path[index + 1]
-      // return new DebugLine({ start: point, end: next, color: 'purple' })
-    })
+    if (DebugLine.GOAL_PATHS) {
+      path.slice(0, path.length - 1).forEach((point, index) => {
+        const next = path[index + 1]
+        return new DebugLine({ start: point, end: next, color: 'purple' })
+      })
+    }
     const target = path.reduce((a, b) => {
       const hit = raycast({ start, end: b, obstacles: Wall.wallObstacles })
       return hit === false ? b : a
@@ -146,7 +147,9 @@ export default class Bot extends Character {
     if (searchNear) {
       this.updateSearch()
     }
-    // void new DebugLine({ start, end: this.searchGoal, color: 'yellow' })
+    if (DebugLine.BOT_GOAL) {
+      void new DebugLine({ start, end: this.searchGoal, color: 'yellow' })
+    }
     if (Character.it === this) {
       const closestVisible: { distance: number, enemy?: Character } = { distance: Infinity }
       const visibleCharacters = this.getVisibleCharacters()

@@ -17,8 +17,8 @@ export default class Direction {
     this.end = end
     this.radians = Matter.Vector.angle(start, end)
 
-    if (debugColor != null) {
-      // void new DebugLine({ start: this.start, end: this.end, color: debugColor })
+    if (debugColor != null && DebugLine.DIRECTION) {
+      void new DebugLine({ start: this.start, end: this.end, color: debugColor })
     }
   }
 
