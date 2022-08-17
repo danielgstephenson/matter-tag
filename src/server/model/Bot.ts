@@ -166,7 +166,7 @@ export default class Bot extends Character {
       const debugCircleColor = Character.it === this ? 'red' : 'white'
       void new DebugCircle({ x: start.x, y: start.y, radius: 10, color: debugCircleColor })
     }
-    const searchNear = getDistance(start, this.searchGoal) < 45
+    const searchNear = getDistance(start, this.searchGoal) < 60
     if (searchNear) {
       this.updateSearch()
     }

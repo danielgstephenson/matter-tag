@@ -18,6 +18,8 @@ import Player from './model/Player'
 import DebugCircle from '../shared/DebugCircle'
 import Waypoint from './model/Waypoint'
 import DebugLabel from '../shared/DebugLabel'
+import Puppet from './model/Puppet'
+import { SOUTH_VECTOR, WEST_VECTOR, NORTH_VECTOR } from './lib/directions'
 
 /* TO DO:
 Crates and Puppets Block Navigation Vision
@@ -99,17 +101,22 @@ const wallProps = [
 ]
 wallProps.forEach(props => new Wall({ ...props, waypoints: false }))
 
+void new Wall({ x: -500, y: -1300, width: 100, height: 200 })
 void new Wall({ x: 1000, y: -1100, width: 800, height: 500 })
 void new Wall({ x: -1000, y: -1100, width: 400, height: 200 })
-void new Wall({ x: -100, y: -1000, width: 1000, height: 40 })
-void new Wall({ x: 0, y: -900, width: 200, height: 40 })
-void new Wall({ x: 100, y: -800, width: 200, height: 40 })
+void new Wall({ x: -100, y: -1100, width: 400, height: 100 })
+void new Wall({ x: -500, y: -900, width: 100, height: 400 })
+void new Wall({ x: -0, y: -800, width: 400, height: 100 })
+void new Wall({ x: -1000, y: -700, width: 400, height: 100 })
+void new Wall({ x: -400, y: -500, width: 100, height: 100 })
+void new Wall({ x: 100, y: -500, width: 100, height: 200 })
+void new Wall({ x: -400, y: -300, width: 600, height: 100 })
+void new Wall({ x: 700, y: -300, width: 200, height: 100 })
 void new Wall({ x: 400, y: -500, width: 200, height: 500 })
-void new Wall({ x: 450, y: 700, width: 200, height: 800 })
-void new Wall({ x: 400, y: 0, width: 200, height: 40 })
-void new Wall({ x: -400, y: 0, width: 200, height: 40 })
 void new Wall({ x: 1000, y: 200, width: 100, height: 1500 })
 void new Wall({ x: -400, y: 600, width: 1000, height: 1000 })
+void new Wall({ x: 450, y: 700, width: 200, height: 800 })
+void new Wall({ x: 300, y: 1300, width: 200, height: 200 })
 
 const edgePadding = 30
 const size = MAP_SIZE - edgePadding
@@ -133,60 +140,63 @@ Waypoint.waypoints.forEach(waypoint => new DebugLabel({
 
 console.log('navigation complete')
 
-void new Crate({ x: 0, y: 30, height: 20, width: 20 })
-void new Crate({ x: 30, y: 30, height: 20, width: 20 })
-void new Crate({ x: -30, y: 30, height: 20, width: 20 })
+void new Crate({ x: -800, y: -800, height: 300, width: 200 })
+void new Crate({ x: -800, y: -200, height: 300, width: 200 })
 void new Crate({ x: -30, y: -30, height: 20, width: 20 })
 void new Crate({ x: 30, y: -30, height: 20, width: 20 })
 void new Crate({ x: 0, y: -30, height: 20, width: 20 })
+void new Crate({ x: 0, y: -30, height: 20, width: 100 })
 void new Crate({ x: 30, y: 0, height: 30, width: 50 })
 void new Crate({ x: -30, y: 0, height: 50, width: 30 })
-void new Crate({ x: 0, y: -30, height: 20, width: 100 })
+void new Crate({ x: 0, y: 30, height: 20, width: 20 })
+void new Crate({ x: 30, y: 30, height: 20, width: 20 })
+void new Crate({ x: -30, y: 30, height: 20, width: 20 })
 void new Crate({ x: 800, y: 200, height: 200, width: 100 })
-void new Crate({ x: -800, y: -200, height: 300, width: 200 })
-void new Crate({ x: -800, y: -800, height: 300, width: 200 })
-// void new Puppet({
-//   x: -300,
-//   y: -30,
-//   vertices: [
-//     { x: 0, y: 50 },
-//     { x: -50, y: -50 },
-//     { x: 50, y: -50 }
-//   ]
-// })
-// void new Puppet({
-//   x: 0,
-//   y: -300,
-//   vertices: [
-//     { x: 0, y: 20 },
-//     { x: -20, y: -20 },
-//     { x: 20, y: -20 }
-//   ],
-//   direction: SOUTH_VECTOR,
-//   force: 0.05
-// })
-// void new Puppet({
-//   x: 300,
-//   y: 0,
-//   vertices: [
-//     { x: 0, y: 30 },
-//     { x: -30, y: -30 },
-//     { x: 30, y: -30 }
-//   ],
-//   direction: WEST_VECTOR
-// })
+void new Crate({ x: 500, y: 1400, height: 200, width: 100 })
+void new Crate({ x: -500, y: 1400, height: 100, width: 200 })
+
+//  void new Puppet({
+//    x: -300,
+//    y: -30,
+//    vertices: [
+//      { x: 0, y: 50 },
+//      { x: -50, y: -50 },
+//      { x: 50, y: -50 }
+//    ]
+//  })
+//  void new Puppet({
+//    x: 0,
+//    y: -300,
+//    vertices: [
+//      { x: 0, y: 20 },
+//      { x: -20, y: -20 },
+//      { x: 20, y: -20 }
+//    ],
+//    direction: SOUTH_VECTOR,
+//    force: 0.05
+//  })
+//  void new Puppet({
+//    x: 300,
+//    y: 0,
+//    vertices: [
+//      { x: 0, y: 30 },
+//      { x: -30, y: -30 },
+//      { x: 30, y: -30 }
+//    ],
+//    direction: WEST_VECTOR
+//  })
 //
-// void new Puppet({
-//   x: 300,
-//   y: 500,
-//   vertices: [
-//     { x: 0, y: 100 },
-//     { x: -100, y: -100 },
-//     { x: 100, y: -100 }
-//   ],
-//   direction: NORTH_VECTOR,
-//   force: 0.05
-// })
+//  void new Puppet({
+//    x: 300,
+//    y: 500,
+//    vertices: [
+//      { x: 0, y: 40 },
+//      { x: -40, y: -40 },
+//      { x: 40, y: -40 }
+//    ],
+//    direction: NORTH_VECTOR,
+//    force: 0.05
+//  })
 // void new Puppet({
 //   x: 800,
 //   y: 500,
