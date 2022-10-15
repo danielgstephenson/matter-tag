@@ -1,7 +1,0 @@
-/node_modules/
-/dist/
-/.parcel-cache/
-/build/
-/src/server/config.json
-/data.csv
-*.pem
